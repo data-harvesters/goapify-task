@@ -47,6 +47,10 @@ func (b *Base) Context() context.Context {
 	return b.context
 }
 
+func (b *Base) Actor() *goapify.Actor {
+	return b.actor
+}
+
 func Run(s Scraper) error {
 	defer func() {
 		if err := recover(); err != nil {
