@@ -1,4 +1,4 @@
-package goapifyscraper
+package goapifytask
 
 import (
 	"context"

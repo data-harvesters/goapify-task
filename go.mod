@@ -1,4 +1,4 @@
-module github.com/data-harvesters/goapify-scraper
+module github.com/data-harvesters/goapify-task
 
 go 1.22.1
 
