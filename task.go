@@ -30,7 +30,7 @@ type Base struct {
 }
 
 func New(actor *goapify.Actor) *Base {
-	ctx, cancel := context.WithCancel(context.Background())
+	ctx, cancel := context.WithCancel(actor.Context())
 
 	return &Base{
 		actor:   actor,
