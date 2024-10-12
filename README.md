@@ -1,5 +1,5 @@
-# Goapify-Scraper
-a goapify Scraper module allows you to create scraper that do specific things
+# Goapify-Task
+a goapify Task module allows you to create multi threaded tasks on actors
 
 ## Usage
 ```go
@@ -34,13 +34,22 @@ func main() {
     // INITIALIZE ACTOR
 	a := goapify.NewActor()
 
-	s, err := newScraper(i, a)
-	if err != nil {
-		fmt.Printf("failed to create scraper: %v\\n", err)
-		panic(err)
-	}
+	var wg sync.WaitGroup
+	for i := 0; i < 5; i++ {
+		wg.Add(1)
 
-	goapifyscraper.Run(s)
+		s, err := newScraper(input, a)
+		if err != nil {
+			fmt.Printf("failed to create scraper: %v\\n", err)
+			continue
+		}
+
+		go func() {
+			defer wg.Done()
+			goapifyscraper.Run(s)
+		}()
+	}
+	wg.Wait()
 }
 
 ```
